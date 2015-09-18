@@ -68,6 +68,3 @@ c:\users\mihkail\documents\visual studio 2015\Projects\WebApplication3\WebApplic
 c:\users\mihkail\documents\visual studio 2015\Projects\WebApplication3\WebApplication3\obj\Debug\WebApplication3.dll
 c:\users\mihkail\documents\visual studio 2015\Projects\WebApplication3\WebApplication3\obj\Debug\WebApplication3.pdb
 C:\Users\Mihkail\Documents\Visual Studio 2015\Projects\WebApplication3\WebApplication3\obj\Debug\WebApplication3.csprojResolveAssemblyReference.cache
-C:\Users\Mihkail\Documents\Visual Studio 2015\Projects\WebApplication3\WebApplication3\obj\Debug\WebApplication3.Migrations.InitialCreate.resources
-C:\Users\Mihkail\Documents\Visual Studio 2015\Projects\WebApplication3\WebApplication3\obj\Debug\WebApplication3.csproj.GenerateResource.Cache
-C:\Users\Mihkail\Documents\Visual Studio 2015\Projects\WebApplication3\WebApplication3\obj\Debug\WebApplication3.Migrations.DataMigration.resources

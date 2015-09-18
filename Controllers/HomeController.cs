@@ -31,6 +31,7 @@ namespace WebApplication3.Controllers
         {
             return View("Trade");
         }   // идем на трейд где добавляем ссылку на свой трейд
+
         public ApplicationSignInManager SignInManager
         {
             get
@@ -76,7 +77,7 @@ namespace WebApplication3.Controllers
             string steamID = parse(loginInfo.Login.ProviderKey);
             switch (result)
             {
-                case SignInStatus.Success:   
+                case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -86,9 +87,7 @@ namespace WebApplication3.Controllers
                     if (ModelState.IsValid)
                     {
                         //добавление в мою базу
-                        SteamLoginContext sl = new SteamLoginContext();
-                        sl.Login.Add(new SteamLogin { SteamID = steamID, UserName = loginInfo.DefaultUserName });
-
+                        AddInfo(loginInfo, steamID);
                         var user = new ApplicationUser { UserName = loginInfo.DefaultUserName, SteamID = steamID };
                         var results = await UserManager.CreateAsync(user);
                         if (results.Succeeded)
@@ -108,12 +107,31 @@ namespace WebApplication3.Controllers
             }
         }
 
+        private static void AddInfo(ExternalLoginInfo loginInfo, string steamID)
+        {
+            using (var context = new SteamLoginContext())
+            {
+                var s = new SteamLogin { Id= 0, SteamId = steamID, UserName = loginInfo.DefaultUserName };
+                
+
+                context.Login.Add(s);
+                var res = context.SaveChanges();
+         
+
+            }
+        }
+
         private string parse(string providerKey)
         {
             providerKey = providerKey.Remove(0, providerKey.LastIndexOf(@"/") + 1);
             return providerKey;
         }
 
+        public ActionResult AddTradeUrl()
+        {
+
+            return View("Index");
+        }
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

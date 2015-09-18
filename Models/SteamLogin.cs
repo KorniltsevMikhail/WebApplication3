@@ -7,8 +7,8 @@ namespace WebApplication3.Models
 {
     public class SteamLogin
     {
-        public int ID { get; set; }
-        public string SteamID { get; set; }
+        public int Id{ get; set; }
+        public string SteamId { get; set; }
         public string UserName { get; set; } 
         public string SteamTradeUrl { get; set; }
     }
