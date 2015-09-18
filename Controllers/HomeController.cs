@@ -112,12 +112,8 @@ namespace WebApplication3.Controllers
             using (var context = new SteamLoginContext())
             {
                 var s = new SteamLogin { Id= 0, SteamId = steamID, UserName = loginInfo.DefaultUserName };
-                
-
                 context.Login.Add(s);
                 var res = context.SaveChanges();
-         
-
             }
         }
 
@@ -127,9 +123,21 @@ namespace WebApplication3.Controllers
             return providerKey;
         }
 
-        public ActionResult AddTradeUrl()
+        public ActionResult AddTradeUrl(string tradeUrl) // нужно сделать через стимайди а не через ник
         {
-
+            using (var context = new SteamLoginContext())
+            {
+                
+                var s = context.Login
+                    .Where(u => u.UserName == User.Identity.Name)
+                    .FirstOrDefault();
+                if(s != null)
+                {
+                        s.SteamTradeUrl = tradeUrl;
+                }
+                context.Entry(s).State = EntityState.Modified;
+                var res = context.SaveChanges();
+            }
             return View("Index");
         }
         public ActionResult LogOff()
